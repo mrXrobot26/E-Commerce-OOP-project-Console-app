@@ -1,10 +1,13 @@
-﻿namespace E_Commerce
+﻿using E_Commerce.Auth;
+using System;
+
+namespace E_Commerce
 {
-    internal class Program
+    class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+           
         }
     }
 }
