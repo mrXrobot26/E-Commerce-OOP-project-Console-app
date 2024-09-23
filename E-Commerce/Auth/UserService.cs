@@ -1,4 +1,5 @@
-﻿using System;
+﻿using E_Commerce.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -6,11 +7,7 @@ namespace E_Commerce.Auth
 {
     internal class UserService : IUserService
     {
-        public static List<User> users;
-        public UserService()
-        {
-            users = DefaultUsers.GetDefaultUsers();
-        }
+        public static List<User> users=DefaultUsers.GetDefaultUsers();
 
         public void Register(User user)
         {
@@ -25,7 +22,8 @@ namespace E_Commerce.Auth
             }
         }
 
-        public bool Login(string email, string password)
+
+        public User Login(string email, string password)
         {
             var user = users.FirstOrDefault(u => u.Email == email && u.Password == password);
             if (user != null)
@@ -33,10 +31,10 @@ namespace E_Commerce.Auth
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine($"Login successful. Welcome {user.Name[0]} ({user.Role})");
                 Console.ResetColor();
-                return true;
+                return user;
             }
             Console.WriteLine("Invalid email or password.");
-            return false;
+            return null;
         }
 
 

@@ -19,7 +19,7 @@ namespace E_Commerce.Auth
                     Name = "Admin User",
                     Role = UserRoles.Admin,
                     Email = "admin@ecommerce.com",
-                    Password = "admin123"
+                    Password = "admin123*"
                 },
                 new User
                 {
@@ -27,7 +27,7 @@ namespace E_Commerce.Auth
                     Name = "Company User",
                     Role = UserRoles.Company,
                     Email = "company@ecommerce.com",
-                    Password = "company123"
+                    Password = "company123*"
                 },
                 new User
                 {
@@ -35,7 +35,7 @@ namespace E_Commerce.Auth
                     Name = "Customer User",
                     Role = UserRoles.Customer,
                     Email = "customer@ecommerce.com",
-                    Password = "customer123"
+                    Password = "customer123*"
                 }
             };
         }

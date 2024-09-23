@@ -7,12 +7,12 @@ namespace E_Commerce.Screens
 {
     internal class HomeScreen
     {
+
         private UserService userService;
         public HomeScreen()
         {
             userService = new UserService();
         }
-
         public void Show()
         {
             while (true)
@@ -44,6 +44,7 @@ namespace E_Commerce.Screens
                 }
             }
         }
+
         private void RegisterScreen()
         {
             Console.Clear();
@@ -57,48 +58,18 @@ namespace E_Commerce.Screens
 
             Console.Write("Enter Password: ");
             string password = Console.ReadLine();
-
-            Console.WriteLine("Select Role:");
-            Console.ForegroundColor= ConsoleColor.Cyan;
-            Console.WriteLine("1. Admin");
-            Console.WriteLine("2. Company");
-            Console.WriteLine("3. Customer");
-            Console.ResetColor();
-            Console.Write("Enter your choice (1-3): ");
-
-            string roleChoice = Console.ReadLine();
-            string role = string.Empty;
-
-            switch (roleChoice)
-            {
-                case "1":
-                    role = UserRoles.Admin;
-                    break;
-                case "2":
-                    role = UserRoles.Company;
-                    break;
-                case "3":
-                    role = UserRoles.Customer;
-                    break;
-                default:
-                    Console.WriteLine("Invalid choice. Defaulting to Customer.");
-                    role = UserRoles.Customer;
-                    break;
-            }
-
             userService.Register(new User
             {
                 Id = Guid.NewGuid().ToString(), // globally unique identifier
                 Name = name,
                 Email = email,
                 Password = password,
-                Role = role
+                Role = UserRoles.Customer
             });
 
             Console.WriteLine("Press any key to go back to the main menu...");
             Console.ReadKey();
         }
-
 
         private void LoginScreen()
         {
@@ -111,16 +82,33 @@ namespace E_Commerce.Screens
             Console.Write("Enter Password: ");
             string password = Console.ReadLine();
 
-            if (userService.Login(email, password))
+            var loggedInUser = userService.Login(email, password);
+            if (loggedInUser != null)
             {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"Login successful! Welcome, {loggedInUser.Name}");
+                Console.ResetColor();
                 Console.WriteLine("Press any key to continue...");
                 Console.ReadKey();
+
+                if (loggedInUser.Role == UserRoles.Admin)
+                {
+                    var adminScreen = new AdminScreen();
+                    adminScreen.Show();
+                }
+                else
+                {
+                    Console.WriteLine($"Logged in as {loggedInUser.Role}. Redirecting...");
+                }
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Login failed. Please try again.");
-                Thread.Sleep(1000); 
+                Console.ResetColor();
+                Thread.Sleep(1000);
             }
         }
+
     }
 }
