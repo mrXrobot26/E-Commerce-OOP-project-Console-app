@@ -16,7 +16,6 @@ namespace E_Commerce.Auth
                 new User
                 {
                     Id = "1",
-                    UserName = "admin1",
                     Name = "Admin User",
                     Role = UserRoles.Admin,
                     Email = "admin@ecommerce.com",
@@ -25,7 +24,6 @@ namespace E_Commerce.Auth
                 new User
                 {
                     Id = "2",
-                    UserName = "company1",
                     Name = "Company User",
                     Role = UserRoles.Company,
                     Email = "company@ecommerce.com",
@@ -34,7 +32,6 @@ namespace E_Commerce.Auth
                 new User
                 {
                     Id = "3",
-                    UserName = "customer1",
                     Name = "Customer User",
                     Role = UserRoles.Customer,
                     Email = "customer@ecommerce.com",

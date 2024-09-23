@@ -1,5 +1,4 @@
-﻿using E_Commerce.Auth;
-using System;
+﻿using E_Commerce.Screens;
 
 namespace E_Commerce
 {
@@ -7,7 +6,8 @@ namespace E_Commerce
     {
         static void Main(string[] args)
         {
-           
+            HomeScreen homeScreen = new HomeScreen();
+            homeScreen.Show();
         }
     }
 }

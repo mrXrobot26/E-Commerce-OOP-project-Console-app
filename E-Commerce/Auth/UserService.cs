@@ -30,9 +30,9 @@ namespace E_Commerce.Auth
             var user = users.FirstOrDefault(u => u.Email == email && u.Password == password);
             if (user != null)
             {
-                Console.ForegroundColor = ConsoleColor.Green; // Set text color to green
-                Console.WriteLine($"Login successful. Welcome {user.UserName} ({user.Role})");
-                Console.ResetColor(); // Reset color back to default
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"Login successful. Welcome {user.Name[0]} ({user.Role})");
+                Console.ResetColor();
                 return true;
             }
             Console.WriteLine("Invalid email or password.");
