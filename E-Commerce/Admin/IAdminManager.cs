@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace E_Commerce.Admin
 {
-    internal interface IAdminService
+    internal interface IAdminManager
     {
         void CreateUser(User user);
         List<User> GetAllUsers();

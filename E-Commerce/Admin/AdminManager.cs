@@ -5,13 +5,13 @@ using System.Linq;
 
 namespace E_Commerce.Admin
 {
-    internal class AdminService : IAdminService
+    internal class AdminManager : IAdminManager
     {
-        private UserService userService;
+        private UserManager userService;
 
-        public AdminService()
+        public AdminManager()
         {
-            userService = new UserService();
+            userService = new UserManager();
         }
 
         public void CreateUser(User user)
@@ -21,12 +21,12 @@ namespace E_Commerce.Admin
 
         public List<User> GetAllUsers()
         {
-            Console.WriteLine($"users count : {UserService.users.Count}");
-            return UserService.users; 
+            Console.WriteLine($"users count : {UserManager.users.Count}");
+            return UserManager.users; 
         }
         public User GetUser(string email)
         {
-            return UserService.users.FirstOrDefault(u => u.Email == email);
+            return UserManager.users.FirstOrDefault(u => u.Email == email);
         }
 
         public void EditUser(string email, User updatedUser)
@@ -52,7 +52,7 @@ namespace E_Commerce.Admin
             var user = GetUser(email);
             if (user != null)
             {
-                UserService.users.Remove(user);
+                UserManager.users.Remove(user);
                 Console.WriteLine("User deleted successfully.");
                 return true;
             }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace E_Commerce.Auth
 {
-    internal interface IUserService
+    internal interface IUserManager
     {
         void Register(User user);
         User Login(string email, string password);

@@ -8,11 +8,11 @@ namespace E_Commerce.Screens
 {
     internal class AdminScreen
     {
-        private AdminService adminService;
+        private AdminManager adminService;
 
         public AdminScreen()
         {
-            adminService = new AdminService();
+            adminService = new AdminManager();
         }
 
         public void Show()

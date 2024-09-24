@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace E_Commerce.Auth
 {
-    internal class UserService : IUserService
+    internal class UserManager : IUserManager
     {
         public static List<User> users=DefaultUsers.GetDefaultUsers();
 
