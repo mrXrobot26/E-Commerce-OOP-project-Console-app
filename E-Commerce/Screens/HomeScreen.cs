@@ -85,9 +85,6 @@ namespace E_Commerce.Screens
             var loggedInUser = userService.Login(email, password);
             if (loggedInUser != null)
             {
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($"Login successful! Welcome, {loggedInUser.Name}");
-                Console.ResetColor();
                 Console.WriteLine("Press any key to continue...");
                 Console.ReadKey();
 

@@ -102,7 +102,6 @@ namespace E_Commerce.Screens
                 Role = role
             });
 
-            Console.WriteLine("User created successfully.");
             Console.WriteLine("Press any key to go back to the admin dashboard...");
             Console.ReadKey();
         }
@@ -112,12 +111,19 @@ namespace E_Commerce.Screens
             Console.Clear();
             var users = adminService.GetAllUsers();
             Console.WriteLine("All Registered Users:");
+
+            string header = string.Format("{0,-20} {1,-30} {2,-15}", "Name", "Email", "Role");
+            Console.WriteLine(header);
+            Console.WriteLine(new string('-', 65));
+
             foreach (var user in users)
             {
-                Console.WriteLine($"- {user.Name} ({user.Email}) - Role: {user.Role}");
+                // - to be in most left  
+                string userInfo = string.Format("{0,-20} {1,-30} {2,-15}", user.Name, user.Email, user.Role);
+                Console.WriteLine(userInfo);
             }
 
-            Console.WriteLine("Press any key to go back to the admin dashboard...");
+            Console.WriteLine("\nPress any key to go back to the admin dashboard...");
             Console.ReadKey();
         }
 

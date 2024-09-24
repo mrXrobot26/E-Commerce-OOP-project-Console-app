@@ -24,7 +24,6 @@ namespace E_Commerce.Admin
             Console.WriteLine($"users count : {UserService.users.Count}");
             return UserService.users; 
         }
-
         public User GetUser(string email)
         {
             return UserService.users.FirstOrDefault(u => u.Email == email);
