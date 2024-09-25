@@ -8,10 +8,10 @@ namespace E_Commerce.Screens
     internal class HomeScreen
     {
 
-        private UserManager userService;
+        private AuthUserManager userService;
         public HomeScreen()
         {
-            userService = new UserManager();
+            userService = new AuthUserManager();
         }
         public void Show()
         {

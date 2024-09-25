@@ -7,11 +7,11 @@ namespace E_Commerce.Admin
 {
     internal class AdminManager : IAdminManager
     {
-        private UserManager userService;
+        private AuthUserManager userService;
 
         public AdminManager()
         {
-            userService = new UserManager();
+            userService = new AuthUserManager();
         }
 
         public void CreateUser(User user)
@@ -21,12 +21,12 @@ namespace E_Commerce.Admin
 
         public List<User> GetAllUsers()
         {
-            Console.WriteLine($"users count : {UserManager.users.Count}");
-            return UserManager.users; 
+            Console.WriteLine($"users count : {AuthUserManager.users.Count}");
+            return AuthUserManager.users; 
         }
         public User GetUser(string email)
         {
-            return UserManager.users.FirstOrDefault(u => u.Email == email);
+            return AuthUserManager.users.FirstOrDefault(u => u.Email == email);
         }
 
         public void EditUser(string email, User updatedUser)
@@ -52,7 +52,7 @@ namespace E_Commerce.Admin
             var user = GetUser(email);
             if (user != null)
             {
-                UserManager.users.Remove(user);
+                AuthUserManager.users.Remove(user);
                 Console.WriteLine("User deleted successfully.");
                 return true;
             }
