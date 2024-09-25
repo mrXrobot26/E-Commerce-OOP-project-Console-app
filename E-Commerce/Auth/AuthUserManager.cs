@@ -22,21 +22,19 @@ namespace E_Commerce.Auth
             }
         }
 
-
         public User Login(string email, string password)
         {
             var user = users.FirstOrDefault(u => u.Email == email && u.Password == password);
             if (user != null)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($"Login successful. Welcome {user.Name[0]} ({user.Role})");
+                Console.WriteLine($"Login successful. Welcome {user.Name} ({user.Role})");
                 Console.ResetColor();
                 return user;
             }
             Console.WriteLine("Invalid email or password.");
             return null;
         }
-
 
         public bool CheckIfUserExists(string email)
         {

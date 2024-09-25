@@ -19,20 +19,19 @@ namespace E_Commerce.Screens
             {
                 Console.Clear();
                 Console.WriteLine("Welcome to E-Commerce App");
-                Console.WriteLine("1. Register");
-                Console.WriteLine("2. Login");
+                Console.WriteLine("1. Login");
+                Console.WriteLine("2. Register");
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.Write("Enter your choice : ");
                 string choice = Console.ReadLine();
                 Console.ResetColor();
-
                 switch (choice)
                 {
                     case "1":
-                        RegisterScreen();
+                        LoginScreen();
                         break;
                     case "2":
-                        LoginScreen();
+                        RegisterScreen();
                         break;
                     default:
                         Console.ForegroundColor = ConsoleColor.Red;
@@ -92,6 +91,11 @@ namespace E_Commerce.Screens
                 {
                     var adminScreen = new AdminScreen();
                     adminScreen.Show();
+                }
+                else if (loggedInUser.Role == UserRoles.Customer)
+                {
+                    var generalScreen = new GeneralUserScreen();
+                    generalScreen.Show();
                 }
                 else
                 {

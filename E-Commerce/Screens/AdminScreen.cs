@@ -1,18 +1,20 @@
 ﻿using E_Commerce.Admin;
 using E_Commerce.Auth;
+using E_Commerce.Products;
 using E_Commerce.Utilities;
 using System;
 using System.Threading;
+
 
 namespace E_Commerce.Screens
 {
     internal class AdminScreen
     {
-        private AdminManager adminService;
 
+        private AdminManager adminManager;
         public AdminScreen()
         {
-            adminService = new AdminManager();
+            adminManager = new AdminManager();
         }
 
         public void Show()
@@ -51,7 +53,7 @@ namespace E_Commerce.Screens
                         DeleteUserScreen();
                         break;
                     case "6":
-                        return; // Exit the admin screen
+                        return;
                     default:
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Invalid choice, please try again.");
@@ -79,21 +81,19 @@ namespace E_Commerce.Screens
             Console.WriteLine("Select Role:");
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("1. Admin");
-            Console.WriteLine("2. Company");
-            Console.WriteLine("3. Customer");
+            Console.WriteLine("2. Customer");
             Console.ResetColor();
-            Console.Write("Enter your choice (1-3): ");
+            Console.Write("Enter your choice (1-2): ");
 
             string roleChoice = Console.ReadLine();
             string role = roleChoice switch
             {
                 "1" => UserRoles.Admin,
-                "2" => UserRoles.Company,
-                "3" => UserRoles.Customer,
-                _ => UserRoles.Customer 
+                "2" => UserRoles.Customer,
+                _ => UserRoles.Customer
             };
 
-            adminService.CreateUser(new User
+            adminManager.CreateUser(new User
             {
                 Id = Guid.NewGuid().ToString(),
                 Name = name,
@@ -109,7 +109,7 @@ namespace E_Commerce.Screens
         private void GetAllUsersScreen()
         {
             Console.Clear();
-            var users = adminService.GetAllUsers();
+            var users = adminManager.GetAllUsers();
             Console.WriteLine("All Registered Users:");
 
             string header = string.Format("{0,-20} {1,-30} {2,-15}", "Name", "Email", "Role");
@@ -118,7 +118,6 @@ namespace E_Commerce.Screens
 
             foreach (var user in users)
             {
-                // - to be in most left  
                 string userInfo = string.Format("{0,-20} {1,-30} {2,-15}", user.Name, user.Email, user.Role);
                 Console.WriteLine(userInfo);
             }
@@ -133,7 +132,7 @@ namespace E_Commerce.Screens
             Console.Write("Enter Email of the user to find: ");
             string email = Console.ReadLine();
 
-            var user = adminService.GetUser(email);
+            var user = adminManager.GetUser(email);
             if (user != null)
             {
                 Console.WriteLine($"Name: {user.Name}, Email: {user.Email}, Role: {user.Role}");
@@ -153,7 +152,7 @@ namespace E_Commerce.Screens
             Console.Write("Enter Email of the user to edit: ");
             string email = Console.ReadLine();
 
-            var existingUser = adminService.GetUser(email);
+            var existingUser = adminManager.GetUser(email);
             if (existingUser != null)
             {
                 Console.Write("Enter new name (or press Enter to keep current): ");
@@ -166,7 +165,7 @@ namespace E_Commerce.Screens
                 if (!string.IsNullOrWhiteSpace(password))
                     existingUser.Password = password;
 
-                adminService.EditUser(email, existingUser);
+                adminManager.EditUser(email, existingUser);
                 Console.WriteLine("User updated successfully.");
             }
             else
@@ -184,7 +183,7 @@ namespace E_Commerce.Screens
             Console.Write("Enter Email of the user to delete: ");
             string email = Console.ReadLine();
 
-            if (adminService.DeleteUser(email))
+            if (adminManager.DeleteUser(email))
             {
                 Console.WriteLine("User deleted successfully.");
             }
@@ -196,5 +195,9 @@ namespace E_Commerce.Screens
             Console.WriteLine("Press any key to go back to the admin dashboard...");
             Console.ReadKey();
         }
+
+     
+
+
     }
 }

@@ -9,7 +9,6 @@ namespace E_Commerce.Utilities
     internal static class UserRoles
     {
         public const string Admin = "Admin";
-        public const string Company = "Company";
         public const string Customer = "Customer";
     }
 }

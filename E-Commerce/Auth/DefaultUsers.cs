@@ -23,14 +23,6 @@ namespace E_Commerce.Auth
                 },
                 new User
                 {
-                    Id = "2",
-                    Name = "Company",
-                    Role = UserRoles.Company,
-                    Email = "company@gmail.com",
-                    Password = "Aompany123*"
-                },
-                new User
-                {
                     Id = "3",
                     Name = "Customer",
                     Role = UserRoles.Customer,
@@ -44,6 +36,14 @@ namespace E_Commerce.Auth
                     Role = UserRoles.Admin,
                     Email = "1",
                     Password = "1"
+                },
+                new User
+                {
+                    Id = "4",
+                    Name = "TestCustomer",
+                    Role = UserRoles.Customer,
+                    Email = "2",
+                    Password = "2"
                 }
             };
         }
